@@ -1,0 +1,28 @@
+{
+  "name": "patients-api",
+  "version": "1.0.0",
+  "description": "NodeJS toy patients microservice",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:dev": "NODE_ENV=dev nodemon --exec ts-node-dev src/index.ts",
+    "start:prod": "NODE_ENV=prod node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "davidandw190",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "ip": "^2.0.1",
+    "mysql": "^2.18.1",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.3"
+  }
+}
