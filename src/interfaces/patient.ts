@@ -1,4 +1,4 @@
-interface Patient {
+export interface Patient {
 	patientId?: number;
 	firstName: string;
 	lastName: string;
@@ -9,5 +9,3 @@ interface Patient {
 	imageUrl?: string | null;
 	createdAt?: Date;
 }
-
-export default Patient;

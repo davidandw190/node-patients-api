@@ -1,6 +1,7 @@
 import cors from "cors";
 import express, { Application } from "express";
 import ip from 'ip';
+import { patientRoutes } from "./router/patient.routes";
 
 export class App {
 	private readonly app: Application;
@@ -23,7 +24,7 @@ export class App {
 	}
 
 	routes(): void {
-		this.app.use('/patients', (req, res) => { });
+		this.app.use('/patients', patientRoutes);
 		this.app.get('/', (req, res) => res.status(200).send({ message: 'Server is up..' }))
 	}
 }

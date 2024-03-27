@@ -1,6 +1,7 @@
 import database from '../config/mysql.config';
+import { Patient } from '../interfaces/patient';
 import QUERY from '../query/patient.query';
-import Patient from '../domain/patient';
+
 
 /**
  * Service function to fetch all patients from the database.
