@@ -1,12 +1,12 @@
 /**
  * Represents an HTTP response.
  */
-class HttpResponse {
+class HttpResponse<T> {
   constructor(
     public readonly statusCode: number,
 	  public readonly httpStatus: string,
     public readonly message: string,
-    public readonly data?: any
+    public readonly data?: T
   ) {
 		this.timeStamp = new Date().toLocaleString();
 	}
