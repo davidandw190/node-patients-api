@@ -25,6 +25,7 @@ const defaultLoggerConfig: LoggerConfig = {
 			colorized: true
 		}
 	},
+	
 	timestamp: () => `,"time": "${new Date().toLocaleString()}"`,
 }
 
