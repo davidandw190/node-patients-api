@@ -1,4 +1,4 @@
-import mysql, { Pool, PoolConfig } from 'mysql';
+import mysql, { Pool, PoolConfig, createPool } from 'mysql';
 import dotenv from 'dotenv'
 
 dotenv.config();
@@ -6,7 +6,7 @@ dotenv.config();
 /**
  * Configuration options for creating a MySQL connection pool.
  */
-const poolConfig: PoolConfig = {
+export const poolConfig: PoolConfig = {
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '3306', 10),
   user: process.env.DB_USER || 'root',
@@ -16,6 +16,17 @@ const poolConfig: PoolConfig = {
   queueLimit: parseInt(process.env.DB_QUEUE_LIMIT || '0', 10)
 };
 
-const pool: Pool = mysql.createPool(poolConfig);
-
-export default pool;
+/**
+ * Establishes a MySQL connection pool.
+ * @returns A Promise that resolves to a MySQL connection pool.
+ */
+export const connection = async (): Promise<Pool> => {
+  try {
+    const pool: Pool = await createPool(poolConfig);
+    return pool;
+    
+  } catch (error) {
+    console.error('Error establishing database connection pool:', error);
+    throw error;
+  }
+};

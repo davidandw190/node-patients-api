@@ -1,6 +1,6 @@
-import database from '../config/mysql.config';
+import connection from '../config/mysql.config';
 import { Patient } from '../interfaces/patient';
-import QUERY from '../query/patient.query';
+import { QUERY } from '../query/patient.query';
 
 
 /**
