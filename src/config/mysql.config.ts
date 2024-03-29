@@ -22,7 +22,7 @@ export const poolConfig: PoolConfig = {
  */
 export const connection = async (): Promise<Pool> => {
   try {
-    const pool: Pool = await createPool(poolConfig);
+    const pool: Pool = createPool(poolConfig);
     return pool;
     
   } catch (error) {

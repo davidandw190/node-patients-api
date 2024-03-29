@@ -1,17 +1,21 @@
+import { Code } from '../enum/http-code.enum';
+import { Status } from '../enum/http-status.enum';
+
 /**
  * Represents an HTTP response.
  */
-class HttpResponse<T> {
+export class HttpResponse<T> {
+  private timeStamp: string;
   constructor(
-    public readonly statusCode: number,
-	  public readonly httpStatus: string,
-    public readonly message: string,
-    public readonly data?: T
+    private statusCode: Code,
+    private httpStatus: Status,
+    private message: string,
+    private data?: T
   ) {
-		this.timeStamp = new Date().toLocaleString();
-	}
-
-	timeStamp: string;
+    this.timeStamp = new Date().toLocaleString();
+    this.statusCode = statusCode;
+    this.httpStatus = httpStatus;
+    this.message = message;
+    this.data = data;
+  }
 }
-
-export default HttpResponse;
