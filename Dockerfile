@@ -1,21 +1,24 @@
-FROM node:21.7.1-bullseye AS base
+# Base stage
+FROM node:18-bullseye AS base
 WORKDIR /usr/src/app
 COPY package.json ./
 
-
-FROM base as dev
-RUN --mount=type=cache,target=/usr/src/app/.npm \
-    npm set cache /usr/src/app/.npm && \
-    npm install
+# Development stage
+FROM base AS dev
+ENV NODE_ENV=dev
+RUN npm install
 COPY . .
 EXPOSE 3000
-CMD [ "node", "run", "start:dev" ]
+CMD [ "npm", "run", "start:dev" ]
 
+# Build stage
+FROM dev AS build
+RUN npm run start:build
 
-FROM base AS production
-ENV NODE_ENV prod
-RUN --mount=type=cache,target=/usr/src/app/.npm \
-    npm set cache /usr/src/app/.npm && \
-    npm install
-EXPOSE 4000
-CMD [ "node", "run", start:prod ]
+# Production stage
+FROM base AS prod
+ENV NODE_ENV=prod
+RUN npm install --omit=dev
+COPY --from=build /usr/src/app/dist ./dist
+EXPOSE 3000
+CMD [ "npm", "run", "start:prod" ]
