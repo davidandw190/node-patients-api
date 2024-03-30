@@ -1,0 +1,13 @@
+node_modules
+Dockerfile
+docker-compose.yml
+.vscode
+.idea
+.gitignore
+.env
+.gitignore
+.git
+.dockerignore
+.prettierc
+README.md 
+LICENSE
